@@ -34,8 +34,8 @@ public class MainActivity extends AppCompatActivity {
     TextView sendFileProgressText;
 
     String sendFilePath;
-    File sendFile;
-    File receiveFile;
+    File fileSend;
+    File fileReceive;
 
     //RTcat
     RTCat cat;
@@ -174,11 +174,12 @@ public class MainActivity extends AppCompatActivity {
                                         runOnUiThread(new Runnable() {
                                             @Override
                                             public void run() {
+
                                                 receiveFileNameText.setText(file.getAbsolutePath());
                                             }
                                         });
-                                        receiveFile = file;
-
+                                        fileReceive = file;
+                                        //TODO File
                                     }
                                 });
 
@@ -222,6 +223,7 @@ public class MainActivity extends AppCompatActivity {
                                     runOnUiThread(new Runnable() {
                                         @Override
                                         public void run() {
+                                            //TODO
                                             sendFileNameText.setText(sendFilePath);
                                         }
                                     });
@@ -255,13 +257,13 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onSendFile(View view){
-        sendFile = new File(sendFilePath);
+        fileSend = new File(sendFilePath);
 
-        Log.i(TAG,"file name: "+ sendFile.getName() + "file size: " + sendFile.length() + "file path: " + sendFile.getAbsolutePath());
+        Log.i(TAG,"file name: "+ fileSend.getName() + "file size: " + fileSend.length() + "file path: " + fileSend.getAbsolutePath());
 
         for (Sender sender:senders
                 ) {
-            sender.sendFile(sendFile);
+            sender.sendFile(fileSend);
         }
     }
 }
