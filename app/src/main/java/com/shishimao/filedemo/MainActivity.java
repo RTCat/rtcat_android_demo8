@@ -91,6 +91,11 @@ public class MainActivity extends AppCompatActivity {
         cat = new RTCat(this);
         cat.addObserver(new RTCat.RTCatObserver() {
             @Override
+            public void error(Errors errors) {
+
+            }
+
+            @Override
             public void init() {
                 createSession();
             }
@@ -150,7 +155,7 @@ public class MainActivity extends AppCompatActivity {
 
                                     @Override
                                     public void message(final String s) {
-
+                                        Log.i(TAG,s);
                                     }
 
                                     @Override
@@ -237,9 +242,10 @@ public class MainActivity extends AppCompatActivity {
                         }
 
                         @Override
-                        public void error(String s) {
-                            Log.e(TAG,s);
+                        public void error(Errors errors) {
+
                         }
+
 
                         @Override
                         public void close() {
